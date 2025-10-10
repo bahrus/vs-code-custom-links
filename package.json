@@ -1,0 +1,41 @@
+{
+  "name": "custom-link-attributes",
+  "displayName": "Custom Link Attributes",
+  "description": "Make custom HTML attributes behave like hyperlinks",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:html"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Custom Link Attributes",
+      "properties": {
+        "customLinkAttributes.attributes": {
+          "type": "array",
+          "default": [],
+          "description": "List of custom HTML attributes to treat as links (in addition to src and href)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.x",
+    "typescript": "^4.9.5"
+  }
+}
