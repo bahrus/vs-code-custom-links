@@ -14,7 +14,7 @@ class CustomLinkProvider {
         const config = vscode.workspace.getConfiguration('customLinkAttributes');
         const customAttributes = config.get('attributes', []);
         // Combine default attributes (src, href) with custom ones
-        const allAttributes = ['src', 'href', ...customAttributes];
+        const allAttributes = ['src', 'href', 'imp-h', ...customAttributes];
         const text = document.getText();
         for (const attr of allAttributes) {
             // Match attribute patterns like attr="value" or attr='value'
