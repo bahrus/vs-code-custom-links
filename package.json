@@ -12,6 +12,10 @@
   "activationEvents": [
     "onLanguage:html"
   ],
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/vs-code-custom-links.git"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
@@ -38,7 +42,7 @@
      "update": "ncu -u && npm install"
   },
   "devDependencies": {
-    "@types/vscode": "^1.105.0",
+    "@types/vscode": "^1.60.0",
     "@types/node": "^24.x",
     "typescript": "^5.9.3"
   }
