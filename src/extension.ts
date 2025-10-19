@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { parse } from 'node-html-parser';
 
 export function activate(context: vscode.ExtensionContext) {
     const linkProvider = new CustomLinkProvider();
@@ -22,20 +23,43 @@ class CustomLinkProvider implements vscode.DocumentLinkProvider {
         const customAttributes: string[] = config.get('attributes', []);
         
         // Combine default attributes (src, href) with custom ones
-        const allAttributes = ['src', 'href', 'imp-h', ...customAttributes];
-        
+        //const allAttributes = ['src', 'href', 'imp-h', ...customAttributes];
+        const allAttributes = ['imp-h', ...customAttributes];
         const text = document.getText();
-        
+        const parsedHTML = parse(text);
+        const lookup: {[key: string]: string} = {};
+        const scripts = Array.from(parsedHTML.querySelectorAll('script'));
+        for(const importMap of scripts){
+            const type = importMap.getAttribute('type');
+            if(type !== 'importmap') continue;
+            const inner = importMap.innerHTML;
+            const parsedJSON = JSON.parse(inner);
+            const imports = parsedJSON['imports'];
+            for(const key in imports){
+                lookup[key] = imports[key];
+            }
+        }
         for (const attr of allAttributes) {
             // Match attribute patterns like attr="value" or attr='value'
             const regex = new RegExp(`${attr}\\s*=\\s*["']([^"']+)["']`, 'gi');
             let match;
             
             while ((match = regex.exec(text)) !== null) {
-                const value = match[1];
+                let value = match[1];
                 const startPos = document.positionAt(match.index + match[0].indexOf(value));
                 const endPos = document.positionAt(match.index + match[0].indexOf(value) + value.length);
                 const range = new vscode.Range(startPos, endPos);
+                if(
+                    value.startsWith('#') || 
+                    value.startsWith('http://') || 
+                    value.startsWith('https://') || 
+                    value.startsWith('..') || 
+                    value.startsWith('/')) continue;
+                for(const key in lookup){
+                    if(value.startsWith(key)){
+                        value = value.replace(key, lookup[key]);
+                    }
+                }
                 
                 // Handle different types of links
                 if (value.startsWith('#')) {

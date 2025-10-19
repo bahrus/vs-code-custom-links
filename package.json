@@ -28,14 +28,18 @@
       }
     }
   },
+  "dependencies": {
+    "node-html-parser": "7.0.1"
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+     "update": "ncu -u && npm install"
   },
   "devDependencies": {
-    "@types/vscode": "^1.60.0",
-    "@types/node": "^16.x",
-    "typescript": "^4.9.5"
+    "@types/vscode": "^1.105.0",
+    "@types/node": "^24.x",
+    "typescript": "^5.9.3"
   }
 }
