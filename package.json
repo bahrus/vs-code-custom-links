@@ -2,7 +2,7 @@
   "name": "custom-link-attributes",
   "displayName": "Custom Link Attributes",
   "description": "Make custom HTML attributes behave like hyperlinks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -13,7 +13,7 @@
   "activationEvents": [
     "onLanguage:html"
   ],
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/vs-code-custom-links.git"
   },
@@ -40,7 +40,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "update": "ncu -u && npm install", 
+    "update": "ncu -u && npm install",
     "deploy": "vsce publish"
   },
   "devDependencies": {
