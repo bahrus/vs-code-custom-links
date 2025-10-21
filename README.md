@@ -2,42 +2,40 @@
 
 ## Features
 
-Custom Attribute Configuration: Add any attributes you want through VS Code settings
-Ctrl+Click Navigation: Works on all configured attributes plus built-in src and href
-Supports Multiple Link Types:
+This extension automatically resolves some custom attributes so that they are tried like the href or src attributes, with a bit of a twist:
 
-ID references (#my-id) - jumps to that element in the document
-External URLs (http://, https://)
-Relative file paths
+### Example
+
+```html
+<html>
+    <head>
+        <script type=importmap>
+            {
+                "imports": {
+                    "my-package/": "/node_modules/my-package/"
+                }
+            }           
+        </script>
+    </head>
+    <body>
+        <my-html-based-web-component imp-h="my-package/root.html"></my-html-based-web-component>
 
 
+        <script type=module>
+            import './imp-h.js';
+        </script>
+    </body>
+</html>
+```
 
-## Setup Instructions
+Assuming node module my-package has a file called root.html, right clicking on the imp-h attribute will take you to that file.
 
-Create a new folder for your extension (e.g., custom-link-attributes)
-Create the following file structure:
+This extension provides out of the box support for [imp-h](https://www.npmjs.com/package/imp-h), [be-importing](https://www.npmjs.com/package/be-importing) and [be-written](https://www.npmjs.com/package/be-written).
 
-   custom-link-attributes/
-   ├── src/
-   │   └── extension.ts    (first artifact)
-   ├── package.json        (second artifact)
-   └── tsconfig.json       (third artifact)
+##  Adding support for additional attributes
 
-Open terminal in the extension folder and run:
+To add your  additional custom attributes, for example: ["data-src", "data-href", "custom-link"]:
 
-bash   npm install
-   npm run compile
-
-Press F5 in VS Code to launch the extension in debug mode
-
-##  How to Use
-
-Once installed, open VS Code settings (Ctrl+,)
+Open VS Code settings (Ctrl+,)
 Search for "Custom Link Attributes"
-Add your custom attributes, for example: ["data-src", "data-href", "custom-link"]
 
-Now any HTML element with those attributes will have clickable links that work just like src and href!
-Example:
-html<div data-src="./other-page.html">Link to file</div>
-<div custom-link="#section-2">Jump to section</div>
-Would you like me to add any additional features, such as support for other file types beyond HTML?RetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses. Sonnet 4.5
