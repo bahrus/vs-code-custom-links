@@ -2,7 +2,7 @@
   "name": "custom-link-attributes",
   "displayName": "Custom Link Attributes",
   "description": "Make custom HTML attributes behave like hyperlinks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.60.0"
