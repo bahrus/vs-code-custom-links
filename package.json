@@ -26,7 +26,7 @@
         "customLinkAttributes.attributes": {
           "type": "array",
           "default": [],
-          "description": "List of custom HTML attributes to treat as links (in addition to src and href)",
+          "description": "List of custom HTML attributes to treat as links",
           "items": {
             "type": "string"
           }
