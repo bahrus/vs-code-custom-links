@@ -16,7 +16,11 @@ class CustomLinkProvider {
         const customAttributes = config.get('attributes', []);
         // Combine default attributes (src, href) with custom ones
         //const allAttributes = ['src', 'href', 'imp-h', ...customAttributes];
-        const allAttributes = ['imp-h', , 'be-importing', 'be-written', '📥', '📜', ...customAttributes];
+        const allAttributes = [
+            'imp-h', 'be-importing', 'be-written', '📥', '📜',
+            'em-bower-src', '😶‍🌫️-src', 'be-decked-with',
+            ...customAttributes
+        ];
         const text = document.getText();
         const parsedHTML = (0, node_html_parser_1.parse)(text);
         const lookup = {};

@@ -26,7 +26,7 @@ class CustomLinkProvider implements vscode.DocumentLinkProvider {
         //const allAttributes = ['src', 'href', 'imp-h', ...customAttributes];
         const allAttributes = [
             'imp-h', 'be-importing', 'be-written', '📥', '📜',
-            'em-bower-src', '😶‍🌫️-src',
+            'em-bower-src', '😶‍🌫️-src', 'be-decked-with',
             ...customAttributes];
         const text = document.getText();
         const parsedHTML = parse(text);
