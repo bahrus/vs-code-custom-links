@@ -1,3 +1,4 @@
+npm install -g @vscode/vsce
 npm version patch
 delete previous *.vsix from directory
 vsce package
